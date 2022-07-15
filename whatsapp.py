@@ -23,25 +23,26 @@ bot_prompt = input('Do you want to add bot prompt to your message? (Y/N) ').uppe
 
 input('Enter anything after scanning QR code...')
 
-user = driver.find_element_by_xpath('//span[@title = "{}"]'.format(name))
+user = driver.find_element("xpath",'//span[@title = "{}"]'.format(name))
 user.click()
 
 #Entered the chat
+#edit: the new update of selenuim : from find_element_by_xpath('.') > find_element("xpath", '.')
 
-msg_box = driver.find_element_by_xpath('//div[@data-tab = "9"]')    #updated from last version: @data-tab = "1"   #May require further updates based on Chrome version.
+msg_box = driver.find_element("xpath",'//div[@data-tab = "9"]')    #updated from last version: @data-tab = "1"   #May require further updates based on Chrome version.
 
 for i in range(count):
     if bot_prompt == 'Y':
         msg_final = '<Status: ' + str(i+1) + '/' + str(count) + '>' + msg
     msg_box.send_keys(msg_final)
-    button = driver.find_element_by_class_name('_4sWnG')            #updated from last version: _35EW6      #May require further updates based on Chrome version.
+    button = driver.find_element("class_name",'_4sWnG')            #updated from last version: _35EW6      #May require further updates based on Chrome version.
     button.click()
     if gap > 0:
         time.sleep(gap)
 
 msg_final = 'Hacking Complete!'
 msg_box.send_keys(msg_final)
-button = driver.find_element_by_class_name('_4sWnG')                #updated from last version: _35EW6      #May require further updates based on Chrome version.
+button = driver.find_element("class_name",'_4sWnG')                #updated from last version: _35EW6      #May require further updates based on Chrome version.
 button.click()
 
 time.sleep(30)              #update: gives time for messages to be sent before closing the window
